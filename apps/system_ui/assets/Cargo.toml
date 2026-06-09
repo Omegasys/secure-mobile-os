@@ -1,0 +1,67 @@
+[package]
+name = "system_ui"
+version = "0.1.0"
+edition = "2021"
+authors = ["OS Project"]
+description = "System UI layer for custom secure mobile OS"
+license = "MIT"
+
+# ----------------------------
+# Core configuration
+# ----------------------------
+[lib]
+name = "system_ui"
+path = "src/lib.rs"
+
+# ----------------------------
+# Dependencies
+# ----------------------------
+[dependencies]
+
+# Logging for UI/system debug output
+log = "0.4"
+env_logger = "0.11"
+
+# Time handling for notifications, lock screen, status bar
+chrono = { version = "0.4", features = ["serde"] }
+
+# Serialization (useful for saving themes, widgets, layouts)
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Random IDs for apps/widgets/notifications
+rand = "0.8"
+
+# ----------------------------
+# Internal OS crates (your OS modules)
+# ----------------------------
+
+# System API layer (permissions, networking, storage access)
+system_api = { path = "../system_api" }
+
+# Plugin system (optional UI extensions)
+plugin_system = { path = "../plugin_system" }
+
+# System services (notifications, updates, telemetry)
+system_services = { path = "../../system_services" }
+
+# Hardware abstraction layer (battery, sensors, display hooks)
+hardware_abstraction = { path = "../../hardware_abstraction" }
+
+# ----------------------------
+# Feature flags (future-proofing)
+# ----------------------------
+[features]
+default = ["software_rendering"]
+
+# Software rendering fallback (for emulator/QEMU)
+software_rendering = []
+
+# Hardware GPU acceleration (for real devices later)
+gpu_acceleration = []
+
+# Debug overlays (FPS, memory, UI bounds)
+debug_overlay = []
+
+# Experimental gesture system improvements
+advanced_gestures = []
