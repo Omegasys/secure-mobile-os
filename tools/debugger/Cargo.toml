@@ -1,0 +1,22 @@
+```toml id="cargo_dbg01"
+[package]
+name = "secure_mobile_os_debugger"
+version = "0.1.0"
+edition = "2021"
+authors = ["Secure Mobile OS Team"]
+license = "GPL-3.0-only"
+description = "Debugger tool for Secure Mobile OS development"
+
+[dependencies]
+
+[profile.dev]
+opt-level = 1
+debug = true
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+```
