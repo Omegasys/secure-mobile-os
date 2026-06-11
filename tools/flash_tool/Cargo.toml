@@ -1,0 +1,22 @@
+```toml
+[package]
+name = "flash_tool"
+version = "0.1.0"
+edition = "2021"
+authors = ["Secure Mobile OS Team"]
+license = "GPL-3.0-only"
+description = "Secure Mobile OS development flashing utility"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+sha2 = "0.10"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev]
+opt-level = 1
+```
